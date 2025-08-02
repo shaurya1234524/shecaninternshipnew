@@ -1,0 +1,93 @@
+{% extends "dashboard.html" %}
+{% load static %}
+ {% block title %} <title>Signup - Empowerment Portal</title>{% endblock title %}
+ 
+ {% block style %}<style>
+ body {
+      margin: 0;
+      padding: 0;
+      background-image: url("{% static 'dashboard/images/women.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    } 
+
+    .overlay {
+      background-color: rgba(255, 255, 255, 0.9);
+      width: 350px;
+      margin: 80px auto;
+      padding: 30px 25px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+    }
+
+    .h2class {
+      color: #b22222;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    form input[type="text"],
+    form input[type="email"],
+    form input[type="password"] {
+        margin-top:20px;
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      box-sizing: border-box;
+    } 
+
+    .mybutton {
+      width: 100%;
+      padding: 10px;
+      margin-top: 15px;
+      background-color: #b22222;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .mybutton:hover {
+      background-color: #8b0000;
+    } 
+
+   a {
+      color: #b22222;
+      text-decoration: none;
+      margin-top: 12px;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    } 
+
+     .tagline {
+      font-size: 14px;
+      color: #555;
+      margin-top: 15px; 
+    } 
+  </style>
+  {% endblock style %}
+{% block body %}
+
+  <div class="overlay">
+    <h2 class="h2class">Empower Yourself</h2>
+    <p class="tagline">Join our journey to uplift and inspire women across the world.</p>
+    
+    <form method="post" >
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit" class="mybutton">Register</button>
+    </form>
+
+    <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+  </div>
+
+{% endblock body %}

@@ -1,0 +1,89 @@
+{% extends "dashboard.html" %}
+{% block title %}
+  <title>Leaderboard</title>{% endblock title %}
+  {% block style %}
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      margin-top:20px;
+      font-size: 2.5rem;
+      color: #b22222;
+      margin-bottom: 2rem;
+    } 
+
+    table {
+      margin: 0 auto;
+      width: 80%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+      box-shadow: 0 4px 12px rgba(44, 32, 32, 0.1);
+      animation: fadeIn 1s ease-in-out;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+
+    th, td {
+      padding: 1rem;
+      text-align: left;
+    }
+
+    th {
+      background-color: #b22222;
+      color: #fff;
+      font-size: 1.2rem;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f1f1f1;
+    }
+
+    tr:hover {
+      background-color: #e0f2f1;
+      transition: background-color 0.3s;
+    }
+
+    a {
+    
+        margin-top:20px;
+      padding:10px;
+      margin: 5rem auto;
+      text-align: center;
+      background-color: #b22222;
+      color: white;
+      
+      text-decoration: none;
+      font-size: 1rem;
+      border-radius: 15px;
+      transition: background-color 0.3s, transform 0.2s;
+    }
+
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+  {% endblock style %}
+{% block body %}
+  <h1> Leaderboard </h1>
+  <table>
+    <tr><th>Name</th><th>Total Donations</th></tr>
+    {% for person in leaders %}
+      <tr>
+        <td>{{ person.name }}</td>
+        <td>₹{{ person.donations }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <div style="text-align: center;">
+    <a href="/">⬅ Back to Dashboard</a>
+  </div>
+{% endblock body %}

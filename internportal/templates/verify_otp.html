@@ -1,0 +1,136 @@
+{% extends "dashboard.html" %}
+{% load static %}
+{% block title %}
+  <title>Verify OTP - SheCan</title>
+{% endblock title %}
+
+{% block style %}
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background-image: url("{% static 'dashboard/images/women.jpg' %}");
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+    }
+
+    .otp-box {
+      background-color: #ffffff;
+      border: 2px solid #f5c6cb;
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+      padding: 40px 30px;
+      max-width: 400px;
+      width: 100%;
+      text-align: center;
+      animation: fadeIn 0.5s ease;
+      margin: 50px auto;
+    }
+
+    .otp-box h2 {
+      color: #b22222;
+      margin-bottom: 20px;
+    }
+
+    .otp-box form p {
+      margin: 15px 0;
+    }
+
+    .otp-box input[type="text"],
+    .otp-box input[type="number"] {
+      width: 100%;
+      padding: 10px 12px;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+      font-size: 16px;
+      text-align: center;
+      letter-spacing: 4px;
+      margin-top: 10px;
+      autocomplete: one-time-code;
+    }
+
+    .otp-box button {
+      background-color: #b22222;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 6px;
+      font-size: 16px;
+      cursor: pointer;
+      margin-top: 20px;
+      width: 100%;
+      transition: background 0.3s, transform 0.1s ease;
+    }
+
+    .otp-box button:hover {
+      background-color: #8b1a1a;
+    }
+
+    .otp-box button:active {
+      transform: scale(0.98);
+    }
+
+    .otp-box a {
+      display: inline-block;
+      margin-top: 15px;
+      color: #b22222;
+      text-decoration: underline;
+      font-size: 15px;
+    }
+
+    .messages {
+      margin-top: 10px;
+    }
+
+    .alert {
+      padding: 10px 15px;
+      border-radius: 5px;
+      margin: 10px 0;
+      font-size: 14px;
+    }
+
+    .alert.success {
+      background-color: #d4edda;
+      color: #155724;
+    }
+
+    .alert.error {
+      background-color: #f8d7da;
+      color: #721c24;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @media (max-width: 500px) {
+      .otp-box {
+        padding: 25px 20px;
+      }
+    }
+  </style>
+{% endblock style %}
+
+{% block body %}
+  <div class="otp-box">
+    <h2>Enter OTP</h2>
+
+     <form method="POST">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Verify</button>
+    </form>
+    <a href="{% url 'resend_otp' %}">Resend OTP</a>
+  </div>
+
+{% endblock body %}
